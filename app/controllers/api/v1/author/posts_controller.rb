@@ -1,4 +1,16 @@
 class Api::V1::Author::PostsController < Api::V1::Author::BaseController
+  include PostsHelper
+
+  def index
+    posts = current_user.posts.includes(:author).recent.page(params[:page]).per(params[:per_page])
+
+    if params[:page].present? && params[:per_page].present?
+      render json: hash_to_top(posts), status: 200
+    else
+      render_error 'Incorrect parameters', 406
+    end
+  end
+
   def show
     post = current_user.posts.find_by(id: params[:post_id])
 

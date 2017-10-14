@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resource :auth_tokens, only: :create
 
       scope module: 'author' do
-        resources :posts, only: [:show, :create], param: :post_id
+        resources :posts, only: %i[index show create], param: :post_id
       end
     end
   end

@@ -6,6 +6,8 @@ class Post < ApplicationRecord
   validates :body, presence: true
   validates :title, presence: true, length: { maximum: 100 }
 
+  scope :recent, -> { order(published_at: :desc) }
+
   private
 
   def time_now_if_published_at_is_nil
