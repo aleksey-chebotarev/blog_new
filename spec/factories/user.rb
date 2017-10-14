@@ -9,5 +9,11 @@ FactoryGirl.define do
         user.posts = create_list :post, 2
       end
     end
+
+    trait :several_comments do
+      before(:create) do |user|
+        user.comments = create_list :comment, 2
+      end
+    end
   end
 end

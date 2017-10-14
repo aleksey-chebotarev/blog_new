@@ -6,7 +6,7 @@ describe Api::V1::Author::PostsController, type: :request do
   let!(:published_at) { '10.10.2016' }
 
   describe 'GET #show' do
-    let(:post) { create :post, author: user, published_at: '10.10.2016' }
+    let(:post) { create :post, author: user, published_at: published_at }
     let(:params) { { post_id: post.id } }
 
     context 'when success' do
