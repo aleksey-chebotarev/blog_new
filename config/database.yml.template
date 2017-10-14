@@ -4,8 +4,8 @@ development:
   encoding: unicode
   database: blog-new_development
   pool:     5
-  username: alex
-  password: alex
+  username: username
+  password: password
   template: template0
 
 test:
@@ -14,8 +14,8 @@ test:
   encoding: unicode
   database: blog-new_test
   pool:     5
-  username: alex
-  password: alex
+  username: username
+  password: password
   template: template0
 
 production:
