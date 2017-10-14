@@ -1,14 +1,10 @@
-class Post < ApplicationRecord
+class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User'
-
-  has_many :comments, as: :commentable
+  belongs_to :commentable, polymorphic: true
 
   before_create :time_now_if_published_at_is_nil
 
   validates :body, presence: true
-  validates :title, presence: true, length: { maximum: 100 }
-
-  scope :recent, -> { order(published_at: :desc) }
 
   private
 

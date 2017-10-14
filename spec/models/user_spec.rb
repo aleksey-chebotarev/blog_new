@@ -4,6 +4,7 @@ RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :nickname }
   it { is_expected.to validate_length_of(:nickname).is_at_most(39) }
   it { is_expected.to have_many(:posts).with_foreign_key('author_id') }
+  it { is_expected.to have_many(:comments).with_foreign_key('author_id') }
 
   describe 'unique validation for nickname' do
     subject { create :user }
@@ -15,6 +16,14 @@ RSpec.describe User, type: :model do
 
     specify do
       expect { User.last.destroy }.to change { Post.count }.by(-2)
+    end
+  end
+
+  describe 'destoys dependent comments' do
+    let!(:author) { create :user, :several_comments }
+
+    specify do
+      expect { User.last.destroy }.to change { Comment.count }.by(-2)
     end
   end
 
