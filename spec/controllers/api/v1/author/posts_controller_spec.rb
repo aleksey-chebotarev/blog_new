@@ -85,5 +85,47 @@ describe Api::V1::Author::PostsController, type: :request do
       end
     end
   end
+
+  describe 'GET #index' do
+    let!(:post) { create :post, author: user, published_at: published_at }
+
+    before { get '/api/v1/posts', params: params, headers: json_request_headers.merge!(token) }
+
+    context 'when success' do
+      let(:params) { { page: 1, per_page: 2 } }
+
+      specify do
+        expect(response.body).to eq([
+                                       {
+                                          total_pages: params[:page],
+                                          posts_count: Post.all.size
+                                       },
+                                       {
+                                          id: Post.first.id,
+                                          title: Post.first.title,
+                                          body: Post.first.body,
+                                          published_at: Time.parse(published_at),
+                                          author_nickname: user.nickname
+                                       }
+                                    ].to_json)
+
+        expect(response).to have_http_status(200)
+        expect(response.content_type).to eq('application/json')
+      end
+    end
+
+    context 'when failure' do
+      let(:params) { { page: 1, per_page: '' } }
+
+      specify do
+        expect(response.body).to eq({
+                                       error: { message: 'Incorrect parameters' }
+                                    }.to_json)
+
+        expect(response).to have_http_status(406)
+        expect(response.content_type).to eq('application/json')
+      end
+    end
+  end
 end
 

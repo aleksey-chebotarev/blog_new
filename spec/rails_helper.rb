@@ -56,4 +56,5 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include Requests::JsonHelpers, type: :request
   config.include AuthHelper
+  config.include PostsHelper
 end
