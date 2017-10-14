@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :posts, foreign_key: :author_id, dependent: :destroy
+
   before_validation :nickname_downcase
 
   validates :nickname, presence: true, uniqueness: true, length: { maximum: 39 }

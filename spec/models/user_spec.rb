@@ -3,10 +3,19 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   it { is_expected.to validate_presence_of :nickname }
   it { is_expected.to validate_length_of(:nickname).is_at_most(39) }
+  it { is_expected.to have_many(:posts).with_foreign_key('author_id') }
 
   describe 'unique validation for nickname' do
     subject { create :user }
     it { is_expected.to validate_uniqueness_of(:nickname).ignoring_case_sensitivity }
+  end
+
+  describe 'destoys dependent posts' do
+    let!(:posts) { create(:user, :several_posts) }
+
+    specify do
+      expect { User.last.destroy }.to change { Post.count }.by(-2)
+    end
   end
 
   describe '#nickname_downcase' do
