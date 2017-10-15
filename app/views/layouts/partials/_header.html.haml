@@ -7,6 +7,10 @@
         %span.icon-bar
         %span.icon-bar
       = link_to 'Blog', root_path, class: 'navbar-brand'
+      %ul.nav.navbar-nav.navbar-left
+        - if user_signed_in?
+          %li
+            = link_to 'Preview', preview_path
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         %li
