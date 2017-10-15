@@ -27,6 +27,13 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'aws-sdk-s3'
 gem 'fog-aws'
+# Background processing + web interface for sidekiq
+gem 'sidekiq', '~> 4.2', '>= 4.2.10'
+gem 'sidekiq-status'
+gem 'sidekiq-failures'
+gem 'sidekiq-unique-jobs'
+gem 'sinatra', require: false
+gem 'redis-namespace', '~> 1.5', '>= 1.5.3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -34,6 +41,7 @@ group :development, :test do
   gem 'dotenv-rails', require: 'dotenv/rails-now'
   gem 'factory_girl_rails'
   gem 'pry-rails'
+  gem 'letter_opener'
 end
 
 group :development do
@@ -51,6 +59,8 @@ group :test do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
+  gem 'rspec-sidekiq'
+  gem 'email_spec'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
