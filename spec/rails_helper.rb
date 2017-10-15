@@ -7,6 +7,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'email_spec'
 require 'email_spec/rspec'
+require 'simplecov'
+
+SimpleCov.start
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -59,5 +62,4 @@ RSpec.configure do |config|
   config.include Requests::JsonHelpers, type: :request
   config.include AuthHelper
   config.include PostsHelper
-  config.include ApplicationHelper
 end

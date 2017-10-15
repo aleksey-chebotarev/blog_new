@@ -6,7 +6,7 @@ RSpec.describe ReportsMailer, type: :mailer do
     let(:end_date) { '10.10.2017' }
     let!(:posts) { create_list :post, 2, published_at: '10.12.2016' }
     let!(:comments) { create_list :comment, 2, published_at: '10.12.2016' }
-    let!(:report) { build_report(start_date, end_date) }
+    let!(:report) { User.build_report(start_date, end_date) }
 
     it 'has appropriate subject' do
       mail = ReportsMailer.new_report_by_author(report, 'example@email.com', start_date, end_date)

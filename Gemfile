@@ -42,6 +42,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'pry-rails'
   gem 'letter_opener'
+  gem 'simplecov'
 end
 
 group :development do
