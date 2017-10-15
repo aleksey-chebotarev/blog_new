@@ -16,7 +16,7 @@ class Api::V1::Author::CommentsController < Api::V1::Author::BaseController
     return render_error 'Post not found', 406 if parent.blank?
 
     if comment.save
-      render_success 'Comment was succesfully created', 201
+      render json: comment, status: 201
     else
       render json: { errors: comment.errors.full_messages }, status: 406
     end

@@ -44,12 +44,17 @@ describe Api::V1::Author::CommentsController, type: :request do
 
     context 'when success' do
       let(:post_new) { create :post }
-      let(:params) { { comment: { body: 'Body' }, post_id: post_new.id }.to_json }
+      let(:published_at) { '10.10.2016' }
+      let(:params) { { comment: { body: 'Body', published_at: published_at }, post_id: post_new.id }.to_json }
 
       specify do
         expect(response.body).to eq({
-                                       data: 'Comment was succesfully created'
+                                       id: Comment.last.id,
+                                       body: 'Body',
+                                       published_at: Time.parse(published_at),
+                                       author_nickname: Comment.last.author.nickname
                                     }.to_json)
+
         expect(response).to have_http_status(201)
         expect(response.content_type).to eq('application/json')
       end
