@@ -19,10 +19,17 @@ gem 'jwt'
 gem 'ffaker'
 gem 'active_model_serializers'
 gem 'kaminari'
+gem 'simple_form'
+gem 'carrierwave'
+gem 'file_validators'
+gem 'mini_magick'
+gem 'bootstrap-sass'
+gem 'jquery-rails'
+gem 'aws-sdk-s3'
+gem 'fog-aws'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'dotenv-rails', require: 'dotenv/rails-now'
   gem 'factory_girl_rails'
@@ -41,6 +48,9 @@ group :test do
   gem 'shoulda-matchers'
   gem 'rails-controller-testing'
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'capybara-webkit'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
