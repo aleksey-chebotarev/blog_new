@@ -1,0 +1,13 @@
+%table
+  %tr
+    %th Nickname
+    %th Email
+    %th Posts for period: from #{@start_date} to #{@end_date}
+    %th Comments for period: from #{@start_date} to #{@end_date}
+
+  - @report.each do |user|
+    %tr
+      %td= user.nickname
+      %td= user.email
+      %td= user.posts_size
+      %td= user.comments_size
